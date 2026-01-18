@@ -1,0 +1,36 @@
+[
+  {
+    "Id": "m1",
+    "MetricStat": {
+      "Metric": {
+        "Namespace": "AWS/RDS",
+        "MetricName": "ServerlessDatabaseCapacity",
+        "Dimensions": [
+          {
+            "Name": "DBClusterIdentifier",
+            "Value": "contact-manager-embedding-database"
+          }
+        ]
+      },
+      "Period": 3600,
+      "Stat": "Average"
+    }
+  },
+  {
+    "Id": "m2",
+    "MetricStat": {
+      "Metric": {
+        "Namespace": "AWS/RDS",
+        "MetricName": "CPUUtilization",
+        "Dimensions": [
+          {
+            "Name": "DBClusterIdentifier",
+            "Value": "contact-manager-embedding-database"
+          }
+        ]
+      },
+      "Period": 3600,
+      "Stat": "Average"
+    }
+  }
+]

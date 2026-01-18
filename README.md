@@ -1,60 +1,36 @@
 # AWS Infrastructure Project
 
-This repository contains AWS infrastructure management tools and cost analysis scripts.
+This repository serves as the centralized hub for AWS infrastructure management, Infrastructure as Code (IaC) via Terraform, and advanced cost analysis automation.
 
 ## 📁 Project Structure
 
-### Infrastructure as Code
-- **Terraform Files** (`*.tf`) - Infrastructure definitions for AWS resources
-- **EC2 Instances** (`ec2_instances.tf`) - EC2 server configurations
-- **Data Sources** (`data.tf`) - AWS data source definitions
-- **Outputs** (`outputs.tf`) - Terraform output configurations
+### 🏗️ Infrastructure as Code (IaC)
+- `main.tf` - Core provider and backend configuration.
+- `ec2_instances.tf` - Managed EC2 instance definitions (Web App & Supabase).
+- `data.tf` - Networking and resource lookups across VPCs.
+- `outputs.tf` - Critical resource exposure and identifiers.
 
-### Cost Management
-- **Cost Analysis Scripts** (`check-aws-costs.ps1`) - PowerShell script for cost monitoring
-- **Cost Reports** (`*.json`) - AWS cost analysis data (sample data)
-- **Cost Analysis Summary** (`aws-cost-analysis-summary.md`) - Cost optimization insights
-- **RDS Optimization** (`rds-optimization-review.md`) - Database cost optimization
+### 💰 Cost Management & Automation
+- `check-aws-costs.ps1` - Advanced cost tracking, forecasting, and service breakdown tool.
+- `setup-rds-auto-stop.ps1` - Automation for database cost optimization.
+- `install-terraform.ps1` - Environment bootstrapping script.
+- `*.json` - Historical cost reports and metric snapshots.
 
-### Setup & Documentation
-- **Installation Guides**
-  - `AWS_CLI_Installation_Guide.md` - AWS CLI setup instructions
-  - `Terraform_Installation_Guide.md` - Terraform installation guide
-  - `AWS_CLI_Commands_Reference.md` - Useful AWS CLI commands
-- **Automation Scripts**
-  - `install-terraform.ps1` - Automated Terraform installation
-  - `setup-rds-auto-stop.ps1` - RDS cost optimization automation
+### 📚 Documentation Hub
+- [**Documentation Index**](docs/README.md) - **Primary Entry Point** for all guides.
+- [**Walkthrough**](docs/walkthrough.md) - Step-by-step history of our infrastructure migration.
+- [**Current Status**](docs/current-state.md) - Real-time tool and resource health.
+- [**Activity Log**](docs/project-activity.md) - Operational history and milestones.
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- AWS CLI installed and configured
-- Terraform installed
-- PowerShell (for automation scripts)
+1. **Environment Setup**: Run `./install-terraform.ps1` and refer to the [AWS CLI Setup Group](docs/aws-cli-setup.md).
+2. **IaC Initialization**: Execute `terraform init` to sync with the local state.
+3. **Cost Auditing**: Run `./check-aws-costs.ps1` to view latest spending trends.
 
-### Setup
-1. Clone this repository
-2. Configure your AWS credentials
-3. Review and modify Terraform variables as needed
-4. Run `terraform init` to initialize the project
+## 🛡️ Security & Governance
+- **State Protection**: `.tfstate` files are handled strictly and git-ignored.
+- **Reference Standards**: Review [**Do's and Don'ts**](docs/dos-and-donts.md) before making modifications.
 
-### Important Security Notes
-- This repository does NOT contain actual AWS credentials or secrets
-- Terraform state files are excluded from version control for security
-- Cost report data is sample/anonymized data
-- Always review files before committing to ensure no sensitive data is included
-
-## 📊 Cost Management
-The project includes comprehensive AWS cost analysis tools:
-- Daily cost monitoring scripts
-- Resource cost breakdown analysis
-- RDS optimization recommendations
-- Automated cost reporting
-
-## 🛡️ Security
-- All sensitive files are properly gitignored
-- No AWS credentials or keys are stored in the repository
-- Terraform state files are excluded for security
-
-## 📝 License
-This project is for educational/reference purposes. Please review and modify according to your specific needs and security requirements.
+---
+*Managed by Antigravity AI - 2026*

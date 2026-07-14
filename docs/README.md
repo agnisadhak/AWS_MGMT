@@ -21,6 +21,11 @@ Welcome to the **AWS_MGMT** project documentation center. This folder serves as 
 - [**💵 Cost Summary**](cost-summary.md) - January 2026 spending analysis and anomaly detection
 - [**📈 Resource Costs**](resource-costs.md) - Detailed cost breakdown by individual AWS resources
 - [**🔄 RDS Optimization**](rds-optimization.md) - Database cost reduction via automated lifecycle management
+- [**🧾 Cost by Service**](cost-by-service.md) - Multi-month service cost comparison
+- [**🔎 EC2-Other Atomic Costs**](ec2-other-atomic-costs.md) - CPU credits, EBS, data transfer breakdown
+
+### 🚨 Incidents & Operations
+- [**🧯 Baiyabasa DB Networking Spike RCA**](baiyabasa-db-incident-rca.md) - Jul 2026 hang investigation, network-limit verdict, remediations
 
 ### 🛠️ Environment & Tools
 - [**⚙️ AWS CLI Setup**](aws-cli-setup.md) - Complete AWS CLI installation and authentication guide

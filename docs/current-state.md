@@ -1,12 +1,11 @@
 # Current State - AWS_MGMT Project
 
-This document outlines the current status of the AWS_MGMT infrastructure management project as of **January 18, 2026**.
+This document outlines the current status of the AWS_MGMT infrastructure management project as of **July 14, 2026**.
 
 ## 🔗 Repository Status
 
 - **GitHub Repository**: https://github.com/agnisadhak/AWS_MGMT
 - **Branch**: `main` (default)
-- **Last Commit**: January 18, 2026
 - **Repository Status**: ✅ **Active & Public**
 
 ## 🛠️ Tooling & Installation Status
@@ -19,24 +18,30 @@ This document outlines the current status of the AWS_MGMT infrastructure managem
 | **GitHub CLI** | ✅ Installed | 2.83.2 | C:\Program Files\GitHub CLI\ | Authenticated as @agnisadhak |
 | **Git** | ✅ Configured | Latest | System PATH | Repository management active |
 
-## 🏗️ Infrastructure Status (Terraform Managed)
+## 🏗️ Infrastructure Status
 
-### EC2 Instances
-| Instance Name | Instance ID | Type | State | Location | Storage |
-|:--------------|:------------|:-----|:------|:---------|:--------|
-| **Web_App_Server** | `i-0572e7b6a833d08fc` | m7g.xlarge | ✅ Running | us-east-1 | 100GB gp2 |
-| **Supabase_server-Email** | `i-0dc408fa8eb153b9c` | t3.small | 🟡 Stopped | us-east-1 | 30GB gp3 |
+### EC2 Instances (live inventory — us-east-1, Jul 14 2026)
 
-### Database Resources
+| Instance Name | Instance ID | Type | State | Private IP | Public IP | Terraform? |
+|:--------------|:------------|:-----|:------|:-----------|:----------|:-----------|
+| **Web_App_Server_coolify** | `i-0ec347df8721a8215` | m7g.xlarge | Running | 172.31.35.213 | 3.232.162.36 | Partial / drift vs old ID |
+| **Baiyabasa_Db_Server** | `i-04f4805c4a4965de2` | t3a.medium | Running | 172.31.35.18 | 52.45.113.46 | Not imported |
+| **Analyzax_DB_Server** | `i-09f07ffc50a72aed7` | t3a.medium | Running | 172.31.29.255 | 52.207.16.163 | Not imported |
+| **Prescription_DB_Server** | `i-049ca409b76550ce6` | t3a.medium | Running | 172.31.74.125 | 44.219.24.72 | Not imported |
+| **supabase-server-01** | `i-0c138d24956d94fca` | t3a.medium | Running | 172.31.38.103 | 54.163.241.161 | Not imported |
+
+> **Incident note:** See [baiyabasa-db-incident-rca.md](baiyabasa-db-incident-rca.md) — Jul 14 networking spike / web hang investigation. NIC baseline (256 Mbps) was **not** saturated; gp3 read throughput was raised after hitting 125 MB/s.
+
+### Database Resources (RDS)
 - **RDS Cluster**: `contact-manager-embedding-database` 
   - **Region**: ap-south-1
   - **Status**: 🔴 **Stopped** (Cost Optimization)
   - **Auto-Stop**: ✅ **Active** - EventBridge + SSM Automation
 
 ### Network & Security
-- **VPCs**: Multi-VPC setup across regions
-- **Security Groups**: Configured for web and database access
-- **IAM Profiles**: `coolify-ec2-profile` (shared across instances)
+- **VPCs**: Multi-VPC setup across regions; web + Baiyabasa DB share `vpc-01686c093725d3d5f` / `subnet-0abd3bcfd167e91e7`
+- **Security Groups**: Coolify/web `sg-09905c7fdc2a43c67`; Baiyabasa DB `sg-059a4c3d8456e7392` (world SSH/80/443 — lockdown recommended)
+- **IAM Profiles**: `coolify-ec2-profile` on web; **Baiyabasa DB has no instance profile / no SSM**
 
 ### Terraform State
 - **State File**: `terraform.tfstate` (Local, Git-ignored)

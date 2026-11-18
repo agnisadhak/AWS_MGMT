@@ -1,4 +1,175 @@
 ﻿{
-    "MetricAlarms": [],
+    "MetricAlarms": [
+        {
+            "AlarmName": "Coolify-Web-HighCPU",
+            "AlarmArn": "arn:aws:cloudwatch:us-east-1:730335513045:alarm:Coolify-Web-HighCPU",
+            "AlarmDescription": "Coolify web CPUUtilization >= 70% for 10 minutes",
+            "AlarmConfigurationUpdatedTimestamp": "2026-10-26T18:48:34.201000+05:30",
+            "ActionsEnabled": true,
+            "OKActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "AlarmActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "InsufficientDataActions": [],
+            "StateValue": "OK",
+            "StateReason": "Threshold Crossed: 1 out of the last 2 datapoints [62.85843160470861 (13/11/26 10:39:00)] was not greater than or equal to the threshold (70.0) (minimum 1 datapoint for ALARM -> OK transition).",
+            "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-11-13T10:44:47.868+0000\",\"startDate\":\"2026-11-13T10:34:00.000+0000\",\"statistic\":\"Average\",\"period\":300,\"recentDatapoints\":[98.24203024012903,62.85843160470861],\"threshold\":70.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-11-13T10:39:00.000+0000\",\"sampleCount\":4.0,\"value\":62.85843160470861}]}",
+            "StateUpdatedTimestamp": "2026-11-13T16:14:47.870000+05:30",
+            "MetricName": "CPUUtilization",
+            "Namespace": "AWS/EC2",
+            "Statistic": "Average",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ec347df8721a8215"
+                }
+            ],
+            "Period": 300,
+            "EvaluationPeriods": 2,
+            "DatapointsToAlarm": 2,
+            "Threshold": 70.0,
+            "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+            "TreatMissingData": "notBreaching",
+            "StateTransitionedTimestamp": "2026-11-13T16:14:47.870000+05:30"
+        },
+        {
+            "AlarmName": "Coolify-Web-HighEBSQueue",
+            "AlarmArn": "arn:aws:cloudwatch:us-east-1:730335513045:alarm:Coolify-Web-HighEBSQueue",
+            "AlarmDescription": "Coolify web EBS VolumeQueueLength >= 2 for 5 minutes",
+            "AlarmConfigurationUpdatedTimestamp": "2026-10-26T18:48:32.110000+05:30",
+            "ActionsEnabled": true,
+            "OKActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "AlarmActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "InsufficientDataActions": [],
+            "StateValue": "OK",
+            "StateReason": "Threshold Crossed: 1 out of the last 5 datapoints [1.84375 (10/11/26 10:45:00)] was not greater than or equal to the threshold (2.0) (minimum 1 datapoint for ALARM -> OK transition).",
+            "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-11-10T10:46:25.351+0000\",\"startDate\":\"2026-11-10T10:41:00.000+0000\",\"statistic\":\"Average\",\"period\":60,\"recentDatapoints\":[3.4326171875,3.423828125,2.1904296875,2.255859375,1.84375],\"threshold\":2.0,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-11-10T10:45:00.000+0000\",\"sampleCount\":1.0,\"value\":1.84375}]}",
+            "StateUpdatedTimestamp": "2026-11-10T16:16:25.353000+05:30",
+            "MetricName": "VolumeQueueLength",
+            "Namespace": "AWS/EBS",
+            "Statistic": "Average",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-04d5e8a2c3fd2c996"
+                }
+            ],
+            "Period": 60,
+            "EvaluationPeriods": 5,
+            "DatapointsToAlarm": 5,
+            "Threshold": 2.0,
+            "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+            "TreatMissingData": "notBreaching",
+            "StateTransitionedTimestamp": "2026-11-10T16:16:25.353000+05:30"
+        },
+        {
+            "AlarmName": "Coolify-Web-HighEBSRead",
+            "AlarmArn": "arn:aws:cloudwatch:us-east-1:730335513045:alarm:Coolify-Web-HighEBSRead",
+            "AlarmDescription": "Coolify web root gp3 VolumeReadBytes >= 200 MiB/s for 3 minutes (ceiling now 250 MB/s)",
+            "AlarmConfigurationUpdatedTimestamp": "2026-10-26T18:48:29.978000+05:30",
+            "ActionsEnabled": true,
+            "OKActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "AlarmActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "InsufficientDataActions": [],
+            "StateValue": "OK",
+            "StateReason": "Threshold Crossed: 1 out of the last 3 datapoints [4.628755968E9 (10/11/26 10:43:00)] was not greater than or equal to the threshold (1.2582912E10) (minimum 1 datapoint for ALARM -> OK transition).",
+            "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-11-10T10:44:22.046+0000\",\"startDate\":\"2026-11-10T10:41:00.000+0000\",\"statistic\":\"Sum\",\"period\":60,\"recentDatapoints\":[1.3448011776E10,1.286109184E10,4.628755968E9],\"threshold\":1.2582912E10,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-11-10T10:43:00.000+0000\",\"sampleCount\":1.0,\"value\":4.628755968E9}]}",
+            "StateUpdatedTimestamp": "2026-11-10T16:14:22.049000+05:30",
+            "MetricName": "VolumeReadBytes",
+            "Namespace": "AWS/EBS",
+            "Statistic": "Sum",
+            "Dimensions": [
+                {
+                    "Name": "VolumeId",
+                    "Value": "vol-04d5e8a2c3fd2c996"
+                }
+            ],
+            "Period": 60,
+            "EvaluationPeriods": 3,
+            "DatapointsToAlarm": 3,
+            "Threshold": 12582912000.0,
+            "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+            "TreatMissingData": "notBreaching",
+            "StateTransitionedTimestamp": "2026-11-10T16:14:22.049000+05:30"
+        },
+        {
+            "AlarmName": "Coolify-Web-HighNetworkIn",
+            "AlarmArn": "arn:aws:cloudwatch:us-east-1:730335513045:alarm:Coolify-Web-HighNetworkIn",
+            "AlarmDescription": "Coolify web NetworkIn >= 50 Mbps for 3 minutes",
+            "AlarmConfigurationUpdatedTimestamp": "2026-10-26T18:48:37.819000+05:30",
+            "ActionsEnabled": true,
+            "OKActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "AlarmActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "InsufficientDataActions": [],
+            "StateValue": "OK",
+            "StateReason": "Threshold Crossed: 1 out of the last 3 datapoints [1.47483663E8 (26/10/26 13:15:00)] was not greater than or equal to the threshold (3.75E8) and 2 missing datapoints were treated as [NonBreaching] (minimum 1 datapoint for ALARM -> OK transition).",
+            "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-26T13:19:34.555+0000\",\"startDate\":\"2026-10-26T13:15:00.000+0000\",\"statistic\":\"Sum\",\"period\":60,\"recentDatapoints\":[1.47483663E8],\"threshold\":3.75E8,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-26T13:15:00.000+0000\",\"sampleCount\":4.0,\"value\":1.47483663E8}]}",
+            "StateUpdatedTimestamp": "2026-10-26T18:49:34.558000+05:30",
+            "MetricName": "NetworkIn",
+            "Namespace": "AWS/EC2",
+            "Statistic": "Sum",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ec347df8721a8215"
+                }
+            ],
+            "Period": 60,
+            "EvaluationPeriods": 3,
+            "DatapointsToAlarm": 3,
+            "Threshold": 375000000.0,
+            "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+            "TreatMissingData": "notBreaching",
+            "StateTransitionedTimestamp": "2026-10-26T18:49:34.558000+05:30"
+        },
+        {
+            "AlarmName": "Coolify-Web-HighNetworkOut",
+            "AlarmArn": "arn:aws:cloudwatch:us-east-1:730335513045:alarm:Coolify-Web-HighNetworkOut",
+            "AlarmDescription": "Coolify web NetworkOut >= 50 Mbps for 3 minutes",
+            "AlarmConfigurationUpdatedTimestamp": "2026-10-26T18:48:40.048000+05:30",
+            "ActionsEnabled": true,
+            "OKActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "AlarmActions": [
+                "arn:aws:sns:us-east-1:730335513045:coolify-alerts"
+            ],
+            "InsufficientDataActions": [],
+            "StateValue": "OK",
+            "StateReason": "Threshold Crossed: 1 out of the last 3 datapoints [5005257.0 (26/10/26 13:15:00)] was not greater than or equal to the threshold (3.75E8) and 2 missing datapoints were treated as [NonBreaching] (minimum 1 datapoint for ALARM -> OK transition).",
+            "StateReasonData": "{\"version\":\"1.0\",\"queryDate\":\"2026-10-26T13:20:16.155+0000\",\"startDate\":\"2026-10-26T13:15:00.000+0000\",\"statistic\":\"Sum\",\"period\":60,\"recentDatapoints\":[5005257.0],\"threshold\":3.75E8,\"evaluatedDatapoints\":[{\"timestamp\":\"2026-10-26T13:15:00.000+0000\",\"sampleCount\":5.0,\"value\":5005257.0}]}",
+            "StateUpdatedTimestamp": "2026-10-26T18:50:16.158000+05:30",
+            "MetricName": "NetworkOut",
+            "Namespace": "AWS/EC2",
+            "Statistic": "Sum",
+            "Dimensions": [
+                {
+                    "Name": "InstanceId",
+                    "Value": "i-0ec347df8721a8215"
+                }
+            ],
+            "Period": 60,
+            "EvaluationPeriods": 3,
+            "DatapointsToAlarm": 3,
+            "Threshold": 375000000.0,
+            "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+            "TreatMissingData": "notBreaching",
+            "StateTransitionedTimestamp": "2026-10-26T18:50:16.158000+05:30"
+        }
+    ],
     "CompositeAlarms": []
 }

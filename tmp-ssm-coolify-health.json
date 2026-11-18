@@ -1,0 +1,24 @@
+{
+  "commands": [
+    "echo ===HOST===",
+    "date -u; uptime; free -h; cat /proc/loadavg",
+    "echo ===COOLIFY_CORE===",
+    "docker ps -a --filter name=coolify --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}' 2>/dev/null",
+    "echo ===CORE_STATS===",
+    "docker stats --no-stream --format '{{.Name}}|{{.CPUPerc}}|{{.MemUsage}}|{{.MemPerc}}' 2>/dev/null | grep -E '^coolify|^coolify-' || true",
+    "echo ===CORE_HEALTH===",
+    "for n in coolify coolify-db coolify-redis coolify-realtime coolify-proxy coolify-sentinel; do if docker inspect \"$n\" >/dev/null 2>&1; then h=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-healthcheck{{end}} | {{.State.Status}} | restart={{.RestartCount}} | {{.State.StartedAt}}' \"$n\" 2>/dev/null); echo \"$n | $h\"; else echo \"$n | NOT_FOUND\"; fi; done",
+    "echo ===PROXY_LABEL===",
+    "docker ps -a --filter name=coolify-proxy --format '{{.Names}} {{.Status}}' 2>/dev/null; docker inspect coolify-proxy --format 'Running={{.State.Running}} Health={{if .State.Health}}{{.State.Health.Status}}{{else}}n/a{{end}}' 2>/dev/null || true",
+    "echo ===ALL_RUNNING_COUNT===",
+    "echo running=$(docker ps -q | wc -l) total=$(docker ps -aq | wc -l)",
+    "echo ===UNHEALTHY_OR_BAD===",
+    "docker ps -a --format '{{.Names}}|{{.Status}}' 2>/dev/null | grep -iE 'unhealthy|restarting|dead|created|exited \\([1-9]' | head -40 || echo 'none_matching'",
+    "echo ===EXIT_137_RECENT===",
+    "docker ps -a --format '{{.Names}}|{{.Status}}' 2>/dev/null | grep -E 'Exited \\(137\\)|Exited \\(139\\)|Exited \\(1\\)' | head -30 || echo 'none'",
+    "echo ===TOP_MEM_CONTAINERS===",
+    "docker stats --no-stream --format '{{.Name}}|{{.CPUPerc}}|{{.MemUsage}}|{{.MemPerc}}' 2>/dev/null | sort -t'|' -k4 -nr | head -20",
+    "echo ===COMPOSE_PROJECTS===",
+    "docker ps --format '{{.Label \"com.docker.compose.project\"}}' 2>/dev/null | sort | uniq -c | sort -nr | head -30"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "commands": [
+    "uptime; free -h; cat /proc/loadavg",
+    "ps -eo pid,pcpu,pmem,rss,comm --sort=-rss | head -12",
+    "docker stats --no-stream --format '{{.Name}} {{.CPUPerc}} {{.MemUsage}}' 2>/dev/null | head -15"
+  ]
+}

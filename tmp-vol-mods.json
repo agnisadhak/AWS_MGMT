@@ -1,0 +1,55 @@
+﻿{
+    "VolumesModifications": [
+        {
+            "VolumeId": "vol-04d5e8a2c3fd2c996",
+            "ModificationState": "completed",
+            "TargetSize": 200,
+            "TargetIops": 3000,
+            "TargetVolumeType": "gp3",
+            "TargetThroughput": 250,
+            "TargetMultiAttachEnabled": false,
+            "OriginalSize": 200,
+            "OriginalIops": 3000,
+            "OriginalVolumeType": "gp3",
+            "OriginalThroughput": 125,
+            "OriginalMultiAttachEnabled": false,
+            "Progress": 100,
+            "StartTime": "2026-10-26T13:04:12+00:00",
+            "EndTime": "2026-10-26T13:54:58+00:00"
+        },
+        {
+            "VolumeId": "vol-0b8ccb10406505bee",
+            "ModificationState": "completed",
+            "TargetSize": 150,
+            "TargetIops": 5000,
+            "TargetVolumeType": "gp3",
+            "TargetThroughput": 125,
+            "TargetMultiAttachEnabled": false,
+            "OriginalSize": 100,
+            "OriginalIops": 3000,
+            "OriginalVolumeType": "gp3",
+            "OriginalThroughput": 125,
+            "OriginalMultiAttachEnabled": false,
+            "Progress": 100,
+            "StartTime": "2026-06-17T06:52:41+00:00",
+            "EndTime": "2026-06-17T07:12:57+00:00"
+        },
+        {
+            "VolumeId": "vol-0ac35233b69cebab7",
+            "ModificationState": "completed",
+            "TargetSize": 100,
+            "TargetIops": 3000,
+            "TargetVolumeType": "gp3",
+            "TargetThroughput": 250,
+            "TargetMultiAttachEnabled": false,
+            "OriginalSize": 100,
+            "OriginalIops": 3000,
+            "OriginalVolumeType": "gp3",
+            "OriginalThroughput": 125,
+            "OriginalMultiAttachEnabled": false,
+            "Progress": 100,
+            "StartTime": "2026-07-14T12:29:10+00:00",
+            "EndTime": "2026-07-14T12:49:34+00:00"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+﻿aws : 
+At line:2 char:1
++ aws ce get-cost-and-usage-with-resources --time-period Start=2026-11- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+aws: [ERROR]: An error occurred (AccessDeniedException) when calling the GetCostAndUsageWithResources operation: 
+Resource-level data granularity is an opt-in only feature. You can be enable this feature from the PAYER account�s 
+Cost Explorer Settings page.

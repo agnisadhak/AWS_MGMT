@@ -1,0 +1,1 @@
+{"ReturnData":true,"MetricStat":{"Metric":{"Dimensions":[{"Value":"i-049ca409b76550ce6","Name":"InstanceId"}],"MetricName":"CPUCreditUsage","Namespace":"AWS/EC2"},"Period":86400,"Stat":"Sum"},"Id":"m1"}

@@ -1,0 +1,12 @@
+{
+  "commands": [
+    "echo ===NOT_UP===",
+    "docker ps -a --format '{{.Names}}|{{.Status}}' | grep -v ' Up ' || echo 'all_up'",
+    "echo ===HEALTHCHECKS===",
+    "docker ps --format '{{.Names}}' | while read n; do h=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}-{{end}}' \"$n\"); if [ \"$h\" != '-' ]; then echo \"$n|$h\"; fi; done | sort",
+    "echo ===PROXY_DEFAULT===",
+    "docker exec coolify-proxy wget -qO- --timeout=3 http://127.0.0.1:8080/api/http/routers 2>/dev/null | head -c 2000 || docker logs coolify-proxy --tail 30 2>&1 | tail -30",
+    "echo ===SAMPLE_APP_STATUS===",
+    "for n in gem-litellm-np4s8grwikkkr6xyiagqn3mn-20261110T081621 fsk0s40sskg0gswcgggg4404-20261109T060747 l8444gwgosc4swwswk8kksco-20261104T204549 gem-b1-portal gem-rc-api wordpress-9pqkbfjzuupj31esisaci1yu uptime-kuma-vom7oxa4yv727dkqa5os7c4l; do docker ps -a --filter name=\"^/${n}$\" --format '{{.Names}}|{{.Status}}' 2>/dev/null || docker ps -a --format '{{.Names}}|{{.Status}}' | grep -F \"$n\" | head -1; done"
+  ]
+}

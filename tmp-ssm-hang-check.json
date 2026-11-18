@@ -1,0 +1,18 @@
+{
+  "commands": [
+    "echo ===HOST===",
+    "date -u; uptime; free -h; cat /proc/loadavg",
+    "echo ===TOP_MEM===",
+    "ps -eo pid,pcpu,pmem,rss,comm --sort=-rss | head -20",
+    "echo ===TOP_CPU===",
+    "ps -eo pid,pcpu,pmem,rss,comm --sort=-pcpu | head -15",
+    "echo ===OOM===",
+    "dmesg -T 2>/dev/null | grep -iE 'out of memory|killed process' | tail -20 || journalctl -k --no-pager 2>/dev/null | grep -iE 'out of memory|killed process' | tail -20",
+    "echo ===DOCKER_STATS===",
+    "docker stats --no-stream --format '{{.Name}}|{{.CPUPerc}}|{{.MemUsage}}|{{.MemPerc}}' 2>/dev/null | sort -t'|' -k4 -nr | head -25",
+    "echo ===DOCKER_UNHEALTHY===",
+    "docker ps -a --format '{{.Names}}|{{.Status}}' 2>/dev/null | grep -iE 'restarting|unhealthy|exited' | head -30",
+    "echo ===COUNTS===",
+    "echo running=$(docker ps -q | wc -l) total=$(docker ps -aq | wc -l)"
+  ]
+}

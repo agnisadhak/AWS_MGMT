@@ -1,0 +1,5 @@
+{
+  "commands": [
+    "date -u; uptime; free -h; cat /proc/loadavg"
+  ]
+}

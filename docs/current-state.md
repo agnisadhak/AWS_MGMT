@@ -1,6 +1,6 @@
 # Current State - AWS_MGMT Project
 
-This document outlines the current status of the AWS_MGMT infrastructure management project as of **July 14, 2026**.
+This document outlines the current status of the AWS_MGMT infrastructure management project as of **October 26, 2026**.
 
 ## 🔗 Repository Status
 
@@ -20,7 +20,7 @@ This document outlines the current status of the AWS_MGMT infrastructure managem
 
 ## 🏗️ Infrastructure Status
 
-### EC2 Instances (live inventory — us-east-1, Jul 14 2026)
+### EC2 Instances (live inventory — us-east-1, Oct 26 2026)
 
 | Instance Name | Instance ID | Type | State | Private IP | Public IP | Terraform? |
 |:--------------|:------------|:-----|:------|:-----------|:----------|:-----------|
@@ -30,7 +30,9 @@ This document outlines the current status of the AWS_MGMT infrastructure managem
 | **Prescription_DB_Server** | `i-049ca409b76550ce6` | t3a.medium | Running | 172.31.74.125 | 44.219.24.72 | Not imported |
 | **supabase-server-01** | `i-0c138d24956d94fca` | t3a.medium | Running | 172.31.38.103 | 54.163.241.161 | Not imported |
 
-> **Incident note:** See [baiyabasa-db-incident-rca.md](baiyabasa-db-incident-rca.md) — Jul 14 networking spike / web hang investigation. NIC baseline (256 Mbps) was **not** saturated; gp3 read throughput was raised after hitting 125 MB/s.
+> **Incident note (Jul 14):** See [baiyabasa-db-incident-rca.md](baiyabasa-db-incident-rca.md) — networking spike / web hang. NIC baseline was **not** saturated; DB gp3 read throughput was raised 125 → 250 MB/s.
+>
+> **Incident note (Oct 26):** `Web_App_Server_coolify` SSH died because root volume `vol-04d5e8a2c3fd2c996` hit the gp3 **125 MB/s** read ceiling (queue ~2.1–2.6), not the `m7g.xlarge` NIC. Throughput raised **125 → 250 MB/s** (IOPS 3000). Stop/start restored SSH (EIP `3.232.162.36` / `eipalloc-06f4de17b59b8c0ad` held). Reader was a Coolify GEM deploy (`gem-*-20261026T123258`) plus mass container layer reads on cold start — no services needed a kill after the power cycle. `coolify` / `coolify-proxy` / `coolify-db` came back healthy. Alarms `Coolify-Web-HighEBSRead|EBSQueue|CPU|NetworkIn|NetworkOut` → `coolify-alerts`. SSM: `AmazonSSMManagedInstanceCore` on `coolify-ec2-role`; snap `amazon-ssm-agent` enabled.
 
 ### Database Resources (RDS)
 - **RDS Cluster**: `contact-manager-embedding-database` 
@@ -41,7 +43,9 @@ This document outlines the current status of the AWS_MGMT infrastructure managem
 ### Network & Security
 - **VPCs**: Multi-VPC setup across regions; web + Baiyabasa DB share `vpc-01686c093725d3d5f` / `subnet-0abd3bcfd167e91e7`
 - **Security Groups**: Coolify/web `sg-09905c7fdc2a43c67`; Baiyabasa DB `sg-059a4c3d8456e7392` (world SSH/80/443 — lockdown recommended)
-- **IAM Profiles**: `coolify-ec2-profile` on web; **Baiyabasa DB has no instance profile / no SSM**
+- **IAM Profiles**: `coolify-ec2-profile` on web (`CloudWatchAgentServerPolicy`, `AmazonS3ReadOnlyAccess`, `AmazonSSMManagedInstanceCore`); **Baiyabasa DB has no instance profile / no SSM**
+- **Web root volume**: `vol-04d5e8a2c3fd2c996` — 200 GB gp3, 3000 IOPS, **250 MB/s** (raised from 125 on Oct 26)
+- **Web EIP**: `3.232.162.36` / `eipalloc-06f4de17b59b8c0ad` (`coolify-web-app-server`)
 
 ### Terraform State
 - **State File**: `terraform.tfstate` (Local, Git-ignored)
@@ -98,7 +102,7 @@ This document outlines the current status of the AWS_MGMT infrastructure managem
 - ✅ **Cost Analysis**: January 2026 spending analysis complete
 
 ### Maintenance Status
-- **Last Updated**: January 18, 2026
+- **Last Updated**: October 26, 2026
 - **Coverage**: 12+ documentation files
 - **GitHub Integration**: All docs linked to repository structure
 
@@ -125,5 +129,5 @@ This document outlines the current status of the AWS_MGMT infrastructure managem
 
 ---
 
-**📅 Status Date**: January 18, 2026  
+**📅 Status Date**: October 26, 2026  
 **🎯 Overall Health**: ✅ **Excellent** - All systems operational and optimized
